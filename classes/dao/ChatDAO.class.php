@@ -17,8 +17,8 @@ class ChatDAO{
     }
 
 
-    public function pegar_id_chat_novo(){
-        $sql = "SELECT cha_id FROM tb_chat ";
+    public function pegar_id_chat_novo($nome_do_chat){
+        $sql = "SELECT cha_id FROM tb_chat WHERE cha_nome =$nome_do_chat ";
         $statement = Conexao::get()->prepare($sql);
         $statement->execute();
     return  $result = $statement->fetch();

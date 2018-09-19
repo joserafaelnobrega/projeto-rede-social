@@ -13,14 +13,14 @@ $chat = new Chat;
 
 $dao = new ChatDAO();
 
-    $texto = $dao->exibir(20);//pega a mensagem e retorna um objeto
+    $texto = $dao->exibir(26);//pega a mensagem e retorna um objeto
     $mensagem = $texto->getTexto();//recebe a mensagem pq $texto é um objeto
 
     if (isset($_GET['x']) ) {
             if($_GET['x'] != ''){    
             $chat->setTexto($mensagem .= "<br/>".$nome." diz::".$_GET['x']);//formatar a mensagem 
 
-            $chat->setId(20);
+            $chat->setId(26);
     
    
 

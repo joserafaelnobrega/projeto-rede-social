@@ -32,7 +32,7 @@ public function getDescricao(){
     return $this->descricao;
 }
 
-public function setFunction($descricao){
+public function setDescricao($descricao){
     $this->descricao = $descricao;
 }
 

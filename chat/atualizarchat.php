@@ -10,7 +10,7 @@ $chat_atualizado = new ChatDAO;
 
 
 
- $mensagem= $chat_atualizado->exibir($_GET['id']); //retorna um objeto do tipo Chat com um texto setado
+ $mensagem= $chat_atualizado->exibir(26); //retorna um objeto do tipo Chat com um texto setado $_GET['id']
 
  $mensagem_atualizada  =$mensagem->getTexto(); // atribui a mensagem a uma variavel;
 

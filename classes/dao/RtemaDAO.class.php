@@ -6,10 +6,11 @@ require_once(__DIR__ . "/../modelo/Rtema.class.php");
 class RtemaDAO{
 
 public function montarchat(Rtema $chat){
+
+
+  
     
-    $sql = "UPDATE tb_def_tema 
-    SET  dte_usu_id = '{$chat->getUsuarioId()}',dte_cha_id ='{$chat->getChatId()}',dte_tem_id '{$chat->getTemaId()}'
-    where dte_cha_id='{$chat->getId()}'";
+    $sql = "INSERT INTO tb_def_tema (dte_tem_id,dte_usu_id,dte_cha_id) VALUES  ('{$chat->getTemaId()}','{$chat->getUsuarioId()}','{$chat->getChatId()}') ";
 try {
     Conexao::get()->exec($sql);
 } catch(PDOException $e) {
@@ -33,15 +34,15 @@ try {
         }
             $contador = 0;
         
-        foreach($chats as $chats){
+        foreach($chats as $tentativa){
             
-             if($chats->getChatId()  == $numero_chat){
+             if($tentativa->getChatId()  == $numero_chat){
         
                 $contador++;
         
             }
         }    
-        if($contador<7){
+        if($contador<5){
             return true;
         }else{
             return false;

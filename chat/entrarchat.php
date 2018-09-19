@@ -22,8 +22,8 @@ $comando_dao = new RtemaDAO;
 $comando = new Rtema;
 
 
-$id_dos_chats_ativos = $chatdao->chatid(); //pega id de todos os chats q existem
-
+$id_dos_chats_ativos = $chatdao->chatid(); //pega id de todos os chats q existem 
+//falta verificar qual o retorno de chatdao->chaid( ) quando nao existe nada cadastrado
 $chats_criados = array();  //array para por os chats
 
 
@@ -49,20 +49,20 @@ if($numero_de_chats_criados == 0){
   $chatdao->criar_chat($chat_novo); //se nao existirem chats cria um
 
   $comando->setTemaId(1);
-  $comando->setChatId( $chatdao->pegar_id_chat_novo() );
-  $comando->setusuarioId($id_usuario);
+  $comando->setChatId( $chatdao->pegar_id_chat_novo($nome_do_chat) );
+  $comando->setUsuarioId($id_usuario);
   $comando_dao->montarchat($comando); //gerencia colocando o usuario em um chat
 
 }else{
 
-    for($i = $numero_de_chats_criados; $i>0; $i--){ //verifica se existe mais de 6 pessoas no chat
+    for($i = $numero_de_chats_criados-1; $i>-1; $i--){ //verifica se existe mais de 6 pessoas no chat
 
         if(  $comando_dao->chatdisponivel($chats_criados[$i])     ){ //se nao existir mais de 6 pessoa retorna true gerencia um usuario em um chat
             
 
             $comando->setTemaId(1);
             $comando->setChatId($chats_criados[$i]);
-            $comando->setusuarioId($id_usuario);
+            $comando->setUsuarioId($id_usuario);
             $comando_dao->montarchat($comando);
             $flag = false;
             break;
@@ -78,9 +78,9 @@ if($numero_de_chats_criados == 0){
     $chat_novo->setDescricao($descricao_chat_novo);
     $chatdao->criar_chat($chat_novo); //se nao existirem chats cria um
 
-    $comando->setTema(1);
-    $comando->setChat( $chatdao->pegar_id_chat_novo()  );
-    $comando->setusuario($id_usuario);
+    $comando->setTemaId(1);
+    $comando->setChatId( $chatdao->pegar_id_chat_novo()  );
+    $comando->setUsuarioId($id_usuario);
     $comando_dao->montarchat($comando); //gerencia colocando o usuario em um chat
 
     }
@@ -103,7 +103,8 @@ if($numero_de_chats_criados == 0){
 </head>
 <body>
   <p>dsdsd</p>
-  <?=$comando_dao->chatdisponivel($chats_criados[$i]);?> // o problema esta nessa funcao
+  
+  <?=$comando_dao->chatdisponivel($chats_criados[$i]);?> 
 </body>
 </html>
 
