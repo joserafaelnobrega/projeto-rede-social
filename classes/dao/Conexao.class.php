@@ -6,7 +6,7 @@ class Conexao{
 private const SERVER = "localhost";
 private const USER = "root";
 private const PASS = "";
-private const DB = "redesocialdb";
+private const DB = "bancoredesocial";
 private const URL = "mysql:host=" . self::SERVER . ";dbname=" . self::DB;
 
 private static $conexao;

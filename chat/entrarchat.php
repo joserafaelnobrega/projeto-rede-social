@@ -15,6 +15,8 @@ $descricao_chat_novo = $_GET['des'];
 
 session_start();
 
+$idchat;
+
 $id_usuario = $_SESSION['id'];
 
 $chatdao = new ChatDAO;
@@ -48,8 +50,12 @@ if($numero_de_chats_criados == 0){
   $chat_novo->setDescricao($descricao_chat_novo);
   $chatdao->criar_chat($chat_novo); //se nao existirem chats cria um
 
+
+  
+
   $comando->setTemaId(1);
   $comando->setChatId( $chatdao->pegar_id_chat_novo($nome_do_chat) );
+  $idchat = $chatdao->pegar_id_chat_novo($nome_do_chat);
   $comando->setUsuarioId($id_usuario);
   $comando_dao->montarchat($comando); //gerencia colocando o usuario em um chat
 
@@ -62,6 +68,7 @@ if($numero_de_chats_criados == 0){
 
             $comando->setTemaId(1);
             $comando->setChatId($chats_criados[$i]);
+            $idchat = $chats_criados[$i];
             $comando->setUsuarioId($id_usuario);
             $comando_dao->montarchat($comando);
             $flag = false;
@@ -78,8 +85,11 @@ if($numero_de_chats_criados == 0){
     $chat_novo->setDescricao($descricao_chat_novo);
     $chatdao->criar_chat($chat_novo); //se nao existirem chats cria um
 
+
+
     $comando->setTemaId(1);
     $comando->setChatId( $chatdao->pegar_id_chat_novo()  );
+    $idchat = $chatdao->pegar_id_chat_novo() ;
     $comando->setUsuarioId($id_usuario);
     $comando_dao->montarchat($comando); //gerencia colocando o usuario em um chat
 
@@ -89,7 +99,7 @@ if($numero_de_chats_criados == 0){
 
 }
 
-        
+   $_SESSION['idchat'] = $idchat;     
     
 ?>
 

@@ -2,15 +2,16 @@
 <?php require_once(__DIR__ . "/../classes/dao/ChatDAO.class.php"); ?>
 
 <?php
+session_start();
 
 $chat_atualizado = new ChatDAO;
 
     
     $id = $_GET['id'];
 
+$idchat = $_SESSION['idchat'];
 
-
- $mensagem= $chat_atualizado->exibir(26); //retorna um objeto do tipo Chat com um texto setado $_GET['id']
+ $mensagem= $chat_atualizado->exibir($idchat); //retorna um objeto do tipo Chat com um texto setado $_GET['id']
 
  $mensagem_atualizada  =$mensagem->getTexto(); // atribui a mensagem a uma variavel;
 
@@ -30,7 +31,7 @@ $chat_atualizado = new ChatDAO;
         bottom: 20px;
         width: 95%;
         height: 100% 
-        " ><?=$mensagem_atualizada;?> </div>
+        " ><?=$mensagem_atualizada;  ?> </div>
 </body>
 </html>
  
