@@ -9,7 +9,7 @@ class UsuarioDAO{
     public function registra(Usuario $usuario){
 
             $sql = "INSERT INTO tb_usuario (usu_login, usu_senha, usu_descricao, usu_nome,usu_sex_id,usu_cat_id,usu_pen_id) 
-            VALUES ('{$usuario->getLogin()}', '{$usuario->getSenha()}','{$usuario->getDescricao()}', '{$usuario->getNome()}', '1','1','1')";
+            VALUES ('{$usuario->getLogin()}', '{$usuario->getSenha()}','{$usuario->getDescricao()}', '{$usuario->getNome()}', '3','3','3')";
         try {
             Conexao::get()->exec($sql);
         } catch(PDOException $e) {
